@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
 import './App.css';
-// import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
+import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
 
 class App extends Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
   };
-  handleInputChange = event => {
+  handleInputChangeName = event => {
     this.setState({ name: event.currentTarget.value });
+  };
+  handleInputChangeNumber = event => {
+    this.setState({ number: event.currentTarget.value });
   };
   handleSubmit = event => {
     event.preventDefault();
-    this.state.contacts.push(this.state.name);
+    this.state.contacts.push({
+      id: nanoid(),
+      name: this.state.name,
+      number: this.state.number,
+    });
+    // this.props.onSubmit(console.log('hi')); //Uncaught TypeError: this.props.onSubmit is not a function why?
+    // this.props.onSubmit({ ...this.state }); //Uncaught TypeError: this.props.onSubmit is not a function why?
     event.currentTarget.elements.name.value = '';
+    event.currentTarget.elements.number.value = '';
   };
   render() {
-    // console.log(nanoid());
-
+    // const { contacts } = this.state; // cant use for the error above
     return (
       <>
         <p className="title">Phonebook</p>
         <form className="phonebookForm" onSubmit={this.handleSubmit}>
-          <button type="submit">Add contact</button>
           <label htmlFor="name" className="labelInputName">
             Name
           </label>
@@ -34,16 +43,34 @@ class App extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             className="inputName"
-            // value={this.state.name}
-            onChange={this.handleInputChange}
+            // value={this.state.name} // cant understand why we need it?
+            onChange={this.handleInputChangeName}
           />
+          <label htmlFor="number" className="labelInputName">
+            Number
+          </label>
+          <input
+            type="tel"
+            name="number"
+            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            className="inputName"
+            onChange={this.handleInputChangeNumber}
+          />
+          <button type="submit" value="Submit">
+            Add contact
+          </button>
         </form>
-        <ul className="title">Contacts</ul>
-        {this.state.contacts.map((element, idx) => (
-          <li key={idx}>{idx}</li>
-        ))}
+        <ul className="title">
+          Contacts
+          {this.state.contacts.map((element) => (
+            <li key={element.id}>{`${element.name}: ${element.number}`}</li>
+          ))}
+        </ul>
       </>
     );
   }
 }
+
 export default App;
