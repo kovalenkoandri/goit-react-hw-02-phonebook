@@ -8,11 +8,9 @@ class App extends Component {
     name: '',
     number: '',
   };
-  handleInputChangeName = event => {
-    this.setState({ name: event.currentTarget.value });
-  };
-  handleInputChangeNumber = event => {
-    this.setState({ number: event.currentTarget.value });
+  handleInputChange = event => {
+    const { name, value } = event.currentTarget;
+    this.setState({ [name]: value });
   };
   handleSubmit = event => {
     event.preventDefault();
@@ -44,7 +42,7 @@ class App extends Component {
             required
             className="inputName"
             // value={this.state.name} // cant understand why we need it?
-            onChange={this.handleInputChangeName}
+            onChange={this.handleInputChange}
           />
           <label htmlFor="number" className="labelInputName">
             Number
@@ -56,7 +54,7 @@ class App extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             className="inputName"
-            onChange={this.handleInputChangeNumber}
+            onChange={this.handleInputChange}
           />
           <button type="submit" value="Submit">
             Add contact
