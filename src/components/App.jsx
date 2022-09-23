@@ -28,8 +28,12 @@ class App extends Component {
   };
   render() {
     // this.props.onSubmit(this.state); //show state on render
-    // const { contacts } = this.state;
-    const { contacts } = this.props;
+    const { contacts } = this.state || []; // internal state
+      const foundContacts = contacts.filter(el =>
+        el.name
+          .toLocaleUpperCase()
+          .includes(this.state.filter.toLocaleUpperCase())
+      ) || [];
     return (
       <>
         <p className="title">Phonebook</p>
@@ -63,12 +67,21 @@ class App extends Component {
           />
           <button type="submit">Add contact</button>
         </form>
+        <label htmlFor="find" className="labelInputName">
+          Find contacts by name
+        </label>
+        <input
+          type="text"
+          name="filter"
+          className="inputName"
+          onChange={this.handleInputChange}
+          value={this.state.filter}
+        />
         <ul className="title">
           Contacts
-          {contacts !== undefined &&
-            contacts.map(element => (
-              <li key={element.id}>{`${element.name}: ${element.number}`}</li>
-            ))}
+          {foundContacts.map(element => (
+            <li key={element.id}>{`${element.name}: ${element.number}`}</li>
+          ))}
         </ul>
       </>
     );
