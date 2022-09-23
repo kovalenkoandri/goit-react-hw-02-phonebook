@@ -20,20 +20,16 @@ class App extends Component {
       name: this.state.name,
       number: this.state.number,
     });
-    this.props.onSubmit(this.state); // show state on submit
+    // this.props.onSubmit(this.state); // show state on submit
     // console.log(event.currentTarget.elements[0].value);
     // console.log(event.currentTarget.elements[1].value);
     event.currentTarget.elements.name.value = '';
     event.currentTarget.elements.number.value = '';
+    // this.props.onSubmit(ContactList);
   };
+ 
   render() {
     // this.props.onSubmit(this.state); //show state on render
-    const { contacts } = this.state || []; // internal state
-      const foundContacts = contacts.filter(el =>
-        el.name
-          .toLocaleUpperCase()
-          .includes(this.state.filter.toLocaleUpperCase())
-      ) || [];
     return (
       <>
         <p className="title">Phonebook</p>
@@ -79,13 +75,21 @@ class App extends Component {
         />
         <ul className="title">
           Contacts
-          {foundContacts.map(element => (
-            <li key={element.id}>{`${element.name}: ${element.number}`}</li>
-          ))}
+          <ContactList state={this.state} />
         </ul>
       </>
     );
   }
 }
+
+const ContactList = props => {
+  const { contacts } = props.state || [];
+  const foundContacts =
+    contacts.filter(el => el.name.includes(contacts.filter)) || contacts;
+  console.log(foundContacts);
+ return foundContacts.map(element => (
+   <li key={element.id}>{`${element.name}: ${element.number}`}</li>
+ ));
+};
 
 export default App;

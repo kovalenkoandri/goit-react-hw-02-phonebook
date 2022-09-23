@@ -12,6 +12,7 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* <App contacts={contacts} /> */}
-    <App onSubmit={values => console.log(values)} />
+    {/* <App onSubmit={values => values} /> */}
+    <App  />
   </React.StrictMode>
 );
