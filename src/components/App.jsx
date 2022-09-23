@@ -5,6 +5,7 @@ import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
 class App extends Component {
   state = {
     contacts: [],
+    filter: '',
     name: '',
     number: '',
   };
@@ -19,13 +20,16 @@ class App extends Component {
       name: this.state.name,
       number: this.state.number,
     });
-    // this.props.onSubmit(console.log('hi')); //Uncaught TypeError: this.props.onSubmit is not a function why?
-    // this.props.onSubmit({ ...this.state }); //Uncaught TypeError: this.props.onSubmit is not a function why?
+    this.props.onSubmit(this.state); // show state on submit
+    // console.log(event.currentTarget.elements[0].value);
+    // console.log(event.currentTarget.elements[1].value);
     event.currentTarget.elements.name.value = '';
     event.currentTarget.elements.number.value = '';
   };
   render() {
-    // const { contacts } = this.state; // cant use for the error above
+    // this.props.onSubmit(this.state); //show state on render
+    // const { contacts } = this.state;
+    const { contacts } = this.props;
     return (
       <>
         <p className="title">Phonebook</p>
@@ -41,7 +45,7 @@ class App extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             className="inputName"
-            // value={this.state.name} // cant understand why we need it?
+            value={this.state.name} // cant understand why we need it?
             onChange={this.handleInputChange}
           />
           <label htmlFor="number" className="labelInputName">
@@ -55,16 +59,16 @@ class App extends Component {
             required
             className="inputName"
             onChange={this.handleInputChange}
+            value={this.state.number}
           />
-          <button type="submit" value="Submit">
-            Add contact
-          </button>
+          <button type="submit">Add contact</button>
         </form>
         <ul className="title">
           Contacts
-          {this.state.contacts.map((element) => (
-            <li key={element.id}>{`${element.name}: ${element.number}`}</li>
-          ))}
+          {contacts !== undefined &&
+            contacts.map(element => (
+              <li key={element.id}>{`${element.name}: ${element.number}`}</li>
+            ))}
         </ul>
       </>
     );
