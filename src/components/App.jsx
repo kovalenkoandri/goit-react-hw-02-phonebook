@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
 import ContactList from './ContactList';
+import ContactForm from './ContactForm';
 class App extends Component {
   state = {
     contacts: [],
@@ -32,37 +33,13 @@ class App extends Component {
     // this.props.onSubmit(this.state); //show state on render
     return (
       <>
-        <p className="title">Phonebook</p>
-        <form className="phonebookForm" onSubmit={this.handleSubmit}>
-          <label htmlFor="name" className="labelInputName">
-            Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            className="inputName"
-            value={this.state.name} // cant understand why we need it?
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="number" className="labelInputName">
-            Number
-          </label>
-          <input
-            type="tel"
-            name="number"
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            className="inputName"
-            onChange={this.handleInputChange}
-            value={this.state.number}
-          />
-          <button type="submit">Add contact</button>
-        </form>
+        <h1 className="title">Phonebook</h1>
+        <ContactForm
+          handleSubmit={this.handleSubmit}
+          state={this.state}
+          handleInputChange={this.handleInputChange}
+        />
+
         <label htmlFor="filter" className="labelInputName">
           Find contacts by name
         </label>
