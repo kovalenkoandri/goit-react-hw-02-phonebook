@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
-
+import ContactList from './ContactList';
 class App extends Component {
   state = {
     contacts: [],
@@ -82,13 +82,6 @@ class App extends Component {
   }
 }
 
-const ContactList = props => {
-  const { contacts } = props.state || [];
-  const foundContacts =
-    contacts.filter(el => el.name.includes(props.state.filter)) || contacts;
- return foundContacts.map(element => (
-   <li key={element.id}>{`${element.name}: ${element.number}`}</li>
- ));
-};
+
 
 export default App;
