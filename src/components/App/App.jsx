@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import css from './App.module.css';
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
 import ContactList from '../ContactList';
 import ContactForm from '../ContactForm';
 import Filter from '../Filter';
 class App extends Component {
+  static propTypes = {
+    contacts: PropTypes.arrayOf(PropTypes.object),
+    filter: PropTypes.string,
+    name: PropTypes.string,
+    number: PropTypes.string,
+  };
+
   state = {
     contacts: [],
     filter: '',
@@ -39,7 +47,7 @@ class App extends Component {
     event.currentTarget.elements.name.value = '';
     event.currentTarget.elements.number.value = '';
   };
- deleteElement = id =>
+  deleteElement = id =>
     this.setState({
       contacts: this.state.contacts.filter(removed => removed.id !== id),
     });
