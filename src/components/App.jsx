@@ -63,7 +63,7 @@ class App extends Component {
           />
           <button type="submit">Add contact</button>
         </form>
-        <label htmlFor="find" className="labelInputName">
+        <label htmlFor="filter" className="labelInputName">
           Find contacts by name
         </label>
         <input
@@ -85,8 +85,7 @@ class App extends Component {
 const ContactList = props => {
   const { contacts } = props.state || [];
   const foundContacts =
-    contacts.filter(el => el.name.includes(contacts.filter)) || contacts;
-  console.log(foundContacts);
+    contacts.filter(el => el.name.includes(props.state.filter)) || contacts;
  return foundContacts.map(element => (
    <li key={element.id}>{`${element.name}: ${element.number}`}</li>
  ));
