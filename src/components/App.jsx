@@ -39,7 +39,10 @@ class App extends Component {
     event.currentTarget.elements.name.value = '';
     event.currentTarget.elements.number.value = '';
   };
-
+ deleteElement = id =>
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(removed => removed.id !== id),
+    }));
   render() {
     return (
       <>
@@ -51,7 +54,7 @@ class App extends Component {
         />
         <h2 className="title">Contacts</h2>
         <Filter state={this.state} handleInputChange={this.handleInputChange} />
-        <ContactList state={this.state} />
+        <ContactList state={this.state} deleteElement={this.deleteElement} />
       </>
     );
   }
