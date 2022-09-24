@@ -40,9 +40,9 @@ class App extends Component {
     event.currentTarget.elements.number.value = '';
   };
  deleteElement = id =>
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(removed => removed.id !== id),
-    }));
+    this.setState({
+      contacts: this.state.contacts.filter(removed => removed.id !== id),
+    });
   render() {
     return (
       <>
