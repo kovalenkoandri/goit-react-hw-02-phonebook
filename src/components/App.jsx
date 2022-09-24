@@ -3,6 +3,7 @@ import './App.css';
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
 import ContactList from './ContactList';
 import ContactForm from './ContactForm';
+import Filter from './Filter';
 class App extends Component {
   state = {
     contacts: [],
@@ -28,7 +29,7 @@ class App extends Component {
     event.currentTarget.elements.number.value = '';
     // this.props.onSubmit(ContactList);
   };
- 
+
   render() {
     // this.props.onSubmit(this.state); //show state on render
     return (
@@ -39,26 +40,12 @@ class App extends Component {
           state={this.state}
           handleInputChange={this.handleInputChange}
         />
-
-        <label htmlFor="filter" className="labelInputName">
-          Find contacts by name
-        </label>
-        <input
-          type="text"
-          name="filter"
-          className="inputName"
-          onChange={this.handleInputChange}
-          value={this.state.filter}
-        />
-        <ul className="title">
-          Contacts
-          <ContactList state={this.state} />
-        </ul>
+        <h2 className="title">Contacts</h2>
+        <Filter state={this.state} handleInputChange={this.handleInputChange} />
+        <ContactList state={this.state} />
       </>
     );
   }
 }
-
-
 
 export default App;
