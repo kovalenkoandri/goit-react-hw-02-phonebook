@@ -25,22 +25,22 @@ class App extends Component {
         alert(`${duplicate.name} is already in contacts.`);
         return;
       }
-    };
-    this.state.contacts.push({
-      id: nanoid(),
-      name: this.state.name,
-      number: this.state.number,
+    }
+    this.setState({
+      contacts: [
+        ...this.state.contacts,
+        {
+          id: nanoid(),
+          name: this.state.name,
+          number: this.state.number,
+        },
+      ],
     });
-    // this.props.onSubmit(this.state); // show state on submit
-    // console.log(event.currentTarget.elements[0].value);
-    // console.log(event.currentTarget.elements[1].value);
     event.currentTarget.elements.name.value = '';
     event.currentTarget.elements.number.value = '';
-    // this.props.onSubmit(ContactList);
   };
 
   render() {
-    // this.props.onSubmit(this.state); //show state on render
     return (
       <>
         <h1 className="title">Phonebook</h1>

@@ -6,8 +6,14 @@ const ContactList = props => {
         .toLocaleUpperCase()
         .includes(props.state.filter.toLocaleUpperCase())
     ) || contacts;
+  const deleteElement = () => (console.log('h'));
   return foundContacts.map(element => (
-    <li key={element.id}>{`${element.name}: ${element.number}`}</li>
+    <li key={element.id}>
+      {`${element.name}: ${element.number} `}
+      <button type="button" onClick={deleteElement}>
+        Delete
+      </button>
+    </li>
   ));
 };
 export default ContactList;
