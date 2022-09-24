@@ -17,6 +17,15 @@ class App extends Component {
   };
   handleSubmit = event => {
     event.preventDefault();
+    for (const duplicate of this.state.contacts) {
+      if (
+        event.currentTarget.elements.name.value.toLocaleUpperCase() ===
+        duplicate.name.toLocaleUpperCase()
+      ) {
+        alert(`${duplicate.name} is already in contacts.`);
+        return;
+      }
+    };
     this.state.contacts.push({
       id: nanoid(),
       name: this.state.name,
