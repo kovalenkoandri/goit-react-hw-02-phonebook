@@ -1,12 +1,11 @@
+import css from './Filter.module.css';
 const Filter = props => (
   <>
-    <label htmlFor="filter" className="labelInputName">
-      Find contacts by name
-    </label>
+    <label htmlFor="filter">Find contacts by name</label>
     <input
       type="text"
       name="filter"
-      className="inputName"
+      className={css.inputName}
       onChange={props.handleInputChange}
       // value={props.state.filter}
     />

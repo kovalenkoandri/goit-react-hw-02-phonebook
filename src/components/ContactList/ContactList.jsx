@@ -1,3 +1,4 @@
+import css from './ContactList.module.css';
 const ContactList = props => {
   const { contacts } = props.state || [];
   const { deleteElement } = props;
@@ -8,12 +9,12 @@ const ContactList = props => {
         .includes(props.state.filter.toLocaleUpperCase())
     ) || contacts;
   return foundContacts.map(element => (
-    <li key={element.id}>
+    <div key={element.id} className={css.renderDiv}>
       {`${element.name}: ${element.number} `}
       <button type="button" onClick={() => deleteElement(element.id)}>
         Delete
       </button>
-    </li>
+    </div>
   ));
 };
 export default ContactList;

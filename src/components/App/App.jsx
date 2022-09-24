@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
+import css from './App.module.css';
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
-import ContactList from './ContactList';
-import ContactForm from './ContactForm';
-import Filter from './Filter';
+import ContactList from '../ContactList';
+import ContactForm from '../ContactForm';
+import Filter from '../Filter';
 class App extends Component {
   state = {
     contacts: [],
@@ -46,13 +46,13 @@ class App extends Component {
   render() {
     return (
       <>
-        <h1 className="title">Phonebook</h1>
+        <h1 className={css.title}>Phonebook</h1>
         <ContactForm
           handleSubmit={this.handleSubmit}
           state={this.state}
           handleInputChange={this.handleInputChange}
         />
-        <h2 className="title">Contacts</h2>
+        <h2 className={css.title}>Contacts</h2>
         <Filter state={this.state} handleInputChange={this.handleInputChange} />
         <ContactList state={this.state} deleteElement={this.deleteElement} />
       </>
