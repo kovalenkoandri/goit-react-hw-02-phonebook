@@ -1,3 +1,4 @@
 .renderDiv{
-    display: list-item;
+    display: list-item; 
+    /* unused anywhere */
 }

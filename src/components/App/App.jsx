@@ -6,7 +6,6 @@ import ContactList from '../ContactList';
 import ContactForm from '../ContactForm';
 import Filter from '../Filter';
 class App extends Component {
-
   state = {
     contacts: [],
     filter: '',
@@ -43,6 +42,15 @@ class App extends Component {
     this.setState({
       contacts: this.state.contacts.filter(removed => removed.id !== id),
     });
+  renderContactList = arr =>
+    arr.map(element => (
+      <div key={element.id} className={css.renderDiv}>
+        {`${element.name}: ${element.number} `}
+        <button type="button" onClick={() => this.deleteElement(element.id)}>
+          Delete
+        </button>
+      </div>
+    ));
   render() {
     return (
       <>
@@ -53,7 +61,10 @@ class App extends Component {
         />
         <h2 className={css.title}>Contacts</h2>
         <Filter handleInputChange={this.handleInputChange} />
-        <ContactList state={this.state} deleteElement={this.deleteElement} />
+        <ContactList
+          state={this.state}
+          renderContactList={this.renderContactList}
+        />
       </>
     );
   }
