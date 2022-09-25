@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import css from './App.module.css';
-import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
+import { nanoid } from 'nanoid';
 import ContactList from '../ContactList';
 import ContactForm from '../ContactForm';
 import Filter from '../Filter';
