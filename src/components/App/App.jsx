@@ -25,13 +25,15 @@ class App extends Component {
         return;
       }
     }
+    console.log(event.currentTarget.elements.name.value);
+    console.log(event.currentTarget.elements.number.value);
     this.setState({
       contacts: [
         ...this.state.contacts,
         {
           id: nanoid(),
-          name: this.state.name,
-          number: this.state.number,
+          name: event.currentTarget.elements.name.value,
+          number: event.currentTarget.elements.number.value,
         },
       ],
     });
@@ -63,7 +65,6 @@ class App extends Component {
         <h1 className={css.title}>Phonebook</h1>
         <ContactForm
           handleSubmit={this.handleSubmit}
-          handleInputChange={this.handleInputChange}
         />
         <h2 className={css.title}>Contacts</h2>
         <Filter handleInputChange={this.handleInputChange} />

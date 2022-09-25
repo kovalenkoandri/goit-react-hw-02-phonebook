@@ -10,7 +10,6 @@ const ContactForm = props => (
       title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
       required
       className={css.inputName}
-      onChange={props.handleInputChange}
     />
     <label htmlFor="number">Number</label>
     <input
@@ -20,7 +19,6 @@ const ContactForm = props => (
       title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
       required
       className={css.inputName}
-      onChange={props.handleInputChange}
     />
     <button type="submit">Add contact</button>
   </form>
