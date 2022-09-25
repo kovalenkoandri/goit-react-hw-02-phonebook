@@ -1,10 +1,10 @@
 import css from './ContactForm.module.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import styled from 'styled-components';
-const Input = styled(Field)`
-  font-size: 20px;
-`;
+// import styled from 'styled-components';
+// const Input = styled(Field)`
+//   font-size: 20px;
+// `;
 
 let schema = yup.object().shape({
   name: yup
@@ -47,7 +47,7 @@ const ContactForm = props => {
       <Form className={css.phonebookForm}>
         {/* <form className={css.phonebookForm} onSubmit={props.handleSubmit}> */}
         <label htmlFor="name">Name</label>
-        <Input
+        <Field
           type="text"
           name="name"
           id="name"
@@ -60,7 +60,7 @@ const ContactForm = props => {
         />
         <ErrorMessage name="name" component="div" />
         <label htmlFor="number">Number</label>
-        <Input
+        <Field
           type="tel"
           name="number"
           // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
