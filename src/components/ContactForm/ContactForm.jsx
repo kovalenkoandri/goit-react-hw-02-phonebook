@@ -7,8 +7,24 @@ const Input = styled(Field)`
 `;
 
 let schema = yup.object().shape({
-  name: yup.string().required(),
-  number: yup.number().required().positive().integer().max(1),
+  name: yup
+    .string()
+    .matches(/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/, {
+      excludeEmptyString: true,
+      message:
+        "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan",
+    }),
+  number: yup
+    .string()
+    .matches(
+      // /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
+      /.*/,
+      {
+        excludeEmptyString: true,
+        message:
+          'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +',
+      }
+    ),
 });
 const ContactForm = props => {
   const state = {
