@@ -7,7 +7,6 @@ const Filter = props => (
       name="filter"
       className={css.inputName}
       onChange={props.handleInputChange}
-      // value={props.state.filter}
     />
   </>
 );
