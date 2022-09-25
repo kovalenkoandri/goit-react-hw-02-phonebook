@@ -51,6 +51,12 @@ class App extends Component {
         </button>
       </div>
     ));
+  filterContacts = arr =>
+    arr.filter(el =>
+      el.name
+        .toLocaleUpperCase()
+        .includes(this.state.filter.toLocaleUpperCase())
+    ) || this.state.contacts;
   render() {
     return (
       <>
@@ -64,6 +70,7 @@ class App extends Component {
         <ContactList
           state={this.state}
           renderContactList={this.renderContactList}
+          filterContacts={this.filterContacts}
         />
       </>
     );
