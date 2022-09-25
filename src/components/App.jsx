@@ -24,8 +24,6 @@ class App extends Component {
         return;
       }
     }
-    console.log(event.currentTarget.elements.name.value);
-    console.log(event.currentTarget.elements.number.value);
     this.setState({
       contacts: [
         ...this.state.contacts,
@@ -60,7 +58,7 @@ class App extends Component {
     ) || this.state.contacts;
   render() {
     return (
-      <>
+      <div>
         <h1 className={css.title}>Phonebook</h1>
         <ContactForm
           handleSubmit={this.handleSubmit}
@@ -72,7 +70,7 @@ class App extends Component {
           renderContactList={this.renderContactList}
           filterContacts={this.filterContacts}
         />
-      </>
+      </div>
     );
   }
 }
