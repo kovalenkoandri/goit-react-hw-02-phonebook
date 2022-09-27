@@ -41,15 +41,6 @@ class App extends Component {
     this.setState({
       contacts: this.state.contacts.filter(removed => removed.id !== id),
     });
-  renderContactList = arr =>
-    arr.map(element => (
-      <div key={element.id} className={css.renderDiv}>
-        {`${element.name}: ${element.number} `}
-        <button type="button" onClick={() => this.deleteElement(element.id)}>
-          Delete
-        </button>
-      </div>
-    ));
   filterContacts = arr =>
     arr.filter(el =>
       el.name
@@ -60,15 +51,15 @@ class App extends Component {
     return (
       <div>
         <h1 className={css.title}>Phonebook</h1>
-        <ContactForm
-          handleSubmit={this.handleSubmit}
-        />
+        <ContactForm handleSubmit={this.handleSubmit} />
         <h2 className={css.title}>Contacts</h2>
         <Filter handleInputChange={this.handleInputChange} />
         <ContactList
-          state={this.state}
-          renderContactList={this.renderContactList}
-          filterContacts={this.filterContacts}
+          {...{
+            state: this.state,
+            deleteElement: this.deleteElement,
+            filterContacts: this.filterContacts,
+          }}
         />
       </div>
     );
