@@ -5,10 +5,10 @@ export default class ContactList extends Component {
   render() {
     const { contacts } = this.props.state || [];
     const { filterContacts, deleteElement } = this.props;
-    const foundContacts = filterContacts(contacts);
+    // const foundContacts = filterContacts(contacts);
     return (
       <ul>
-        {foundContacts.map(element => {
+        {contacts.map(element => {
           const { id, name, number } = element;
           return (
             <li key={id} className={css.renderLi}>
