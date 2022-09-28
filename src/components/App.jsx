@@ -41,23 +41,12 @@ class App extends Component {
     this.setState({
       contacts: this.state.contacts.filter(removed => removed.id !== id),
     });
-  filterContacts = arr =>
-    arr.filter(el =>
-      el.name
-        .toLocaleUpperCase()
-        .includes(this.state.filter.toLocaleUpperCase())
-    ) || this.state.contacts;
-     initialArray;
-  filterContacts2 = str => {
-    console.log(str);
+  filterContacts = (str) => {
     if (str.length === 0) {
-      console.log(str.length);
-      this.initialArray !== undefined && this.setState({ contacts: [...this.initialArray] });
-      console.log(this.initialArray);
-      
+      this.state.filter !== undefined &&
+        this.setState({ contacts: [...this.state.filter] });
     } else {
-      this.initialArray = [...this.state.contacts];
-      console.log(this.initialArray);
+      this.setState({filter: [...this.state.contacts]});
       this.setState(state => ({
         contacts: state.contacts.filter(remain => remain.name.includes(str)),
       }));
@@ -69,13 +58,11 @@ class App extends Component {
         <h1 className={css.title}>Phonebook</h1>
         <ContactForm handleSubmit={this.handleSubmit} />
         <h2 className={css.title}>Contacts</h2>
-        {/* <Filter handleInputChange={this.handleInputChange} /> */}
-        <Filter filterContacts2={this.filterContacts2} />
+        <Filter filterContacts={this.filterContacts} />
         <ContactList
           {...{
             state: this.state,
             deleteElement: this.deleteElement,
-            filterContacts: this.filterContacts,
           }}
         />
       </div>

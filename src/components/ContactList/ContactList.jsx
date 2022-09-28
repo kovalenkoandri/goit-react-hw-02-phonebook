@@ -5,8 +5,6 @@ export default class ContactList extends Component {
   render() {
     const { contacts } = this.props.state || [];
     const {  deleteElement } = this.props;
-    // const { filterContacts, deleteElement } = this.props;
-    // const foundContacts = filterContacts(contacts);
     return (
       <ul>
         {contacts.map(element => {
