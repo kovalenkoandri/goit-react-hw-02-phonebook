@@ -47,14 +47,17 @@ class App extends Component {
         .toLocaleUpperCase()
         .includes(this.state.filter.toLocaleUpperCase())
     ) || this.state.contacts;
+     initialArray;
   filterContacts2 = str => {
-    let initialArray = [];
-    if (str === '') {
-      initialArray = [...this.state.contacts];
-      console.log(initialArray);
-      if (initialArray.length !== 0)
-        this.setState({ contacts: [...initialArray] });
+    console.log(str);
+    if (str.length === 0) {
+      console.log(str.length);
+      this.initialArray !== undefined && this.setState({ contacts: [...this.initialArray] });
+      console.log(this.initialArray);
+      
     } else {
+      this.initialArray = [...this.state.contacts];
+      console.log(this.initialArray);
       this.setState(state => ({
         contacts: state.contacts.filter(remain => remain.name.includes(str)),
       }));

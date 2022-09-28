@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 export default class ContactList extends Component {
   render() {
     const { contacts } = this.props.state || [];
-    const { filterContacts, deleteElement } = this.props;
+    const {  deleteElement } = this.props;
+    // const { filterContacts, deleteElement } = this.props;
     // const foundContacts = filterContacts(contacts);
     return (
       <ul>
