@@ -1,5 +1,6 @@
 import css from './Filter.module.css';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 export default class Filter extends Component {
   onChange = event => this.props.filterContacts(event.target.value);
   render() {
@@ -11,8 +12,13 @@ export default class Filter extends Component {
            name="filter"
            className={css.inputName}
            onChange={this.onChange}
+          //  value={this.props.filter} //cant understand why we need it
          />
        </>
      );
   }
 }
+Filter.propTypes = {
+  filterContacts: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
+};

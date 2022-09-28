@@ -7,7 +7,7 @@ import Filter from './Filter';
 class App extends Component {
   state = {
     contacts: [],
-    filter: '',
+    filter: '', //cant understand why we need it
   };
   handleInputChange = event => {
     const { name, value } = event.currentTarget;
@@ -41,15 +41,18 @@ class App extends Component {
     this.setState({
       contacts: this.state.contacts.filter(removed => removed.id !== id),
     });
-  filterContacts = (str) => {
+  saveArray;
+  filterContacts = (str = '') => {
     if (str.length === 0) {
-      this.state.filter !== undefined &&
-        this.setState({ contacts: [...this.state.filter] });
+      this.saveArray !== undefined &&
+        this.setState({ contacts: [...this.saveArray] });
     } else {
-      this.setState({filter: [...this.state.contacts]});
-      this.setState(state => ({
-        contacts: state.contacts.filter(remain => remain.name.includes(str)),
-      }));
+      this.saveArray = [...this.state.contacts];
+      this.setState({
+        contacts: this.state.contacts.filter(remain =>
+          remain.name.includes(str)
+        ),
+      });
     }
   };
   render() {
@@ -58,7 +61,12 @@ class App extends Component {
         <h1 className={css.title}>Phonebook</h1>
         <ContactForm handleSubmit={this.handleSubmit} />
         <h2 className={css.title}>Contacts</h2>
-        <Filter filterContacts={this.filterContacts} />
+        <Filter
+          {...{
+            filterContacts: this.filterContacts,
+            filter: this.state.filter,
+          }}
+        />
         <ContactList
           {...{
             state: this.state,
